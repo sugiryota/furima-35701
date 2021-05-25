@@ -6,7 +6,7 @@
 | ----------------- | ---------- | ----------------------- |
 | nickname          | string     | null: false             |
 | email             | string     | null: false,unique:true |
-| encryped_password | string     | null: false             |
+| encrypted_password| string     | null: false             |
 | family_name       | string     | null: false             |
 | first_name        | string     | null: false             |
 | family_name_kana  | string     | null: false             |
@@ -19,7 +19,7 @@
 
 - has_many  :items
 - has_many  :comments
-- has_one   :adress
+- has_one   :address
 - has_one   :pay
 
 ## items テーブル
@@ -31,8 +31,8 @@
 | price               | integer     | null: false     |
 | category_id         | integer     | null: false     |
 | item_condition_id   | integer     | null: false     |
-| delivery_charge_id  | integer      | null: false     |
-| prefecture_id             | integer     | null: false     |
+| delivery_charge_id  | integer      | null: false    |
+| prefecture_id       | integer     | null: false     |
 | delivery_day_id     | integer     | null: false     |  
 | user                | references  |foreign_key:true |             |
 
@@ -40,6 +40,7 @@
 
 - belongs_to  :user
 - has_many    :comments
+- has_one     :pay
 
 ## comments テーブル
 
@@ -54,34 +55,36 @@
 - belongs_to  :user
 - belongs_to  :item
 
-## adress テーブル
+## address テーブル
 
-| Column              | Type        | Options     |
-| ------------------- | ----------- | ----------- |
-| postal_code         | integer     | null: false |
-| prefecture_id       | integer     | null: false | 
-| city                | string      | null: false |
-| adress              | integer     | null: false |
-| building_name       | string      | null: false |
-| phone_number        | integer     | null: false |
-| user                | references  |             |
+| Column              | Type        | Options          |
+| ------------------- | ----------- | ---------------- |
+| postal_code         | integer     | null: false      |
+| prefecture_id       | integer     | null: false      | 
+| city                | string      | null: false      |
+| address             | string      | null: false      |
+| building_name       | string      |                  |
+| phone_number        | string      | null: false      |
+| pay                 | references  | foreign_key:true |
 
 
 ### Association
 
 - belongs_to  :user
-
+- has_one     :pay
 
 ## pay テーブル
 
 | Column              | Type        | Options     |
 | ------------------- | ----------- | ----------- |
-| items               | refernces   |             |
+| items               | references  |             |
 
 
 ### Association
 
 - belongs_to  :user
+- has_one     :address
+- belongs_to  :item
 
 
 
