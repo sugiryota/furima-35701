@@ -19,8 +19,7 @@
 
 - has_many  :items
 - has_many  :comments
-- has_one   :address
-- has_one   :pay
+- has_many  :pays
 
 ## items テーブル
 
@@ -34,7 +33,7 @@
 | delivery_charge_id  | integer      | null: false    |
 | prefecture_id       | integer     | null: false     |
 | delivery_day_id     | integer     | null: false     |  
-| user                | references  |foreign_key:true |             |
+| user                | references  |foreign_key:true |
 
 ### Association
 
@@ -59,7 +58,7 @@
 
 | Column              | Type        | Options          |
 | ------------------- | ----------- | ---------------- |
-| postal_code         | integer     | null: false      |
+| postal_code         | string      | null: false      |
 | prefecture_id       | integer     | null: false      | 
 | city                | string      | null: false      |
 | address             | string      | null: false      |
@@ -70,14 +69,15 @@
 
 ### Association
 
-- belongs_to  :user
-- has_one     :pay
+
+- belongs_to    :pay
 
 ## pay テーブル
 
-| Column              | Type        | Options     |
-| ------------------- | ----------- | ----------- |
-| items               | references  |             |
+| Column              | Type        | Options         |
+| ------------------- | ----------- | --------------- |
+| item                | references  |foreign_key:true |
+| user                | references  |foreign_key:true |
 
 
 ### Association
