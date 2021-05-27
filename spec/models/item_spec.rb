@@ -37,9 +37,8 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
       it '販売価格は半角数字のみ保存可能であること' do
-        @item.price = １１１
+        @item.price = '１１１'
         @item.valid?
-
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it '画像を1枚つけることが必須であること' do
