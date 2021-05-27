@@ -9,6 +9,7 @@ class Item < ApplicationRecord
       validates :delivery_charge_id
       validates :prefecture_id
       validates :delivery_day_id
+      validates :item_condition_id
     end
     
    
