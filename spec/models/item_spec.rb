@@ -34,7 +34,7 @@ RSpec.describe Item, type: :model do
       it '販売価格は半角数字のみ保存可能であること' do
         @item.price = '１１１'
         @item.valid?
-        binding.pry
+        
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
       it '画像を1枚つけることが必須であること' do
