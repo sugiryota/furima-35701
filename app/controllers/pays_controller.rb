@@ -1,5 +1,5 @@
 class PaysController < ApplicationController
-  before_action :authenticate_user!, expect: [:index]
+  before_action :authenticate_user!, only: [:index,:create]
   before_action :move_to_root, only: [:index, :create]
   def index
     
