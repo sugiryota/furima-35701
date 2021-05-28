@@ -30,14 +30,14 @@ class PaysController < ApplicationController
     @item = Item.find(params[:item_id])
     Payjp.api_key = 'sk_test_c1678ffb13f80a63bc9d3c36'
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
-      card: pay_params[:token], # カードトークン
-      currency: 'jpy'                 # 通貨の種類（日本円）
+      amount: @item.price,
+      card: pay_params[:token],
+      currency: 'jpy'
     )
   end
 
   def move_to_root
     @item = Item.find(params[:item_id])
-    redirect_to root_path if @item.user_id == current_user.id
+    redirect_to root_path if @item.user_id == current_user.id || @item.pay.present?
   end
 end
