@@ -9,7 +9,7 @@
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
       
-      <%if ()%>
+      <% if @item.pay.present? %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
@@ -25,9 +25,9 @@
       </span>
     </div>
 
-    
+    <%unless @item.pay.present? %>
     <%if user_signed_in?%>
-    <%if current_user.id==@item.user_id%>
+    <%if current_user.id==@item.user_id %>
     <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
@@ -37,6 +37,7 @@
   
     <%end%>
     <%end%>
+    <%end %>
 
 
     <div class="item-explain-box">

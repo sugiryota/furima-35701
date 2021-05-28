@@ -6,7 +6,7 @@ RSpec.describe PayAddress, type: :model do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
       @pay_address = FactoryBot.build(:pay_address, user_id: user.id, item_id: item.id)
-      sleep 0.1 
+      sleep 0.1
     end
 
     context '内容に問題ない場合' do
@@ -51,9 +51,9 @@ RSpec.describe PayAddress, type: :model do
         expect(@pay_address.errors.full_messages).to include("Phone number can't be blank")
       end
       it '電話番号は11桁以内の数値のみ保存可能なこと' do
-        @pay_address.phone_number = 415665516541
+        @pay_address.phone_number = 415_665_516_541
         @pay_address.valid?
-        expect(@pay_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@pay_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'userが紐付いていないと保存できないこと' do
         @pay_address.user_id = nil
@@ -65,13 +65,11 @@ RSpec.describe PayAddress, type: :model do
         @pay_address.valid?
         expect(@pay_address.errors.full_messages).to include("Item can't be blank")
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @pay_address.token = nil
         @pay_address.valid?
         expect(@pay_address.errors.full_messages).to include("Token can't be blank")
       end
-      
-
     end
   end
 end
