@@ -2,7 +2,7 @@ class PaysController < ApplicationController
   before_action :authenticate_user!, expect: [:index]
   before_action :move_to_root, only: [:index, :create]
   def index
-    @item = Item.find(params[:item_id])
+    
     @pay_address = PayAddress.new
   end
 
@@ -13,7 +13,7 @@ class PaysController < ApplicationController
       @pay_address.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
+    
       render :index
     end
   end
@@ -27,8 +27,8 @@ class PaysController < ApplicationController
   end
 
   def pay_item
-    @item = Item.find(params[:item_id])
-    Payjp.api_key = 'sk_test_c1678ffb13f80a63bc9d3c36'
+    
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.price,
       card: pay_params[:token],
