@@ -7,7 +7,6 @@ class PaysController < ApplicationController
   end
 
   def create
-    
     @pay_address = PayAddress.new(pay_params)
     if @pay_address.valid?
       pay_item
