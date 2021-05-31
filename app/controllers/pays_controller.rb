@@ -7,12 +7,11 @@ class PaysController < ApplicationController
   end
 
   def create
-    
     @pay_address = PayAddress.new(pay_params)
     if @pay_address.valid?
       pay_item
       @pay_address.save
-      return redirect_to root_path
+      redirect_to root_path
     else
     
       render :index
