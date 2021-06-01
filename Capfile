@@ -35,7 +35,7 @@ install_plugin istrano::SCM::Git
 # require "istrano/passenger"
 
 # Load custom tasks from `lib/istrano/tasks` if you have any defined
-
+Dir.glob("lib/istrano/tasks/*.rake").each { |r| import r }
 require "capistrano/setup"
 require "capistrano/deploy"
 require 'capistrano/rbenv'
