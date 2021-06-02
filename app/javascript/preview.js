@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded',function(){
-  if (document.getElementById('item-image'))
+  if (document.getElementById('item-image')){
     const ImageList = document.getElementById('image-list');
     
     
